@@ -79,7 +79,7 @@ public class CreateSaleBDBlackTest {
 			assertTrue(exist);
 			testDA.close();
 			
-			} catch (ParamNullException | SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
+			} catch (SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 			// if the program goes to this point fail  
 				e.printStackTrace();
 			    System.out.println("Error: " + e.getMessage());
@@ -105,9 +105,6 @@ public class CreateSaleBDBlackTest {
 			sut.close();			
 			fail("The sale must not be created");
 			
-			} catch (ParamNullException e ) { 
-			// if the program goes to this point true  
-				assertTrue(true);
 			} catch ( SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
@@ -140,7 +137,7 @@ public class CreateSaleBDBlackTest {
 			assertTrue(!exist);
 			testDA.close();
 			
-			} catch (ParamNullException | SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
+			} catch (SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
 		    System.out.println("Error: " + e.getMessage());
@@ -175,7 +172,7 @@ public class CreateSaleBDBlackTest {
 			assertTrue(!exist);
 			testDA.close();
 			
-			} catch (ParamNullException | SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
+			} catch (SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
 		    System.out.println("Error: " + e.getMessage());
@@ -192,7 +189,7 @@ public class CreateSaleBDBlackTest {
 	
 	@Test
 	//sut.createSale:  The description parameter is null
-	public void test5() {
+	public void test5() throws ParamNullException {
 		description= null;
 		try {
 			//invoke System Under Test (sut)  
@@ -201,9 +198,6 @@ public class CreateSaleBDBlackTest {
 			sut.close();			
 			fail("The sale must not be created");
 			
-			} catch (ParamNullException e ) { 
-			// if the program goes to this point true  
-				assertTrue(true);
 			} catch ( SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
@@ -217,7 +211,7 @@ public class CreateSaleBDBlackTest {
 	
 	@Test
 	//sut.createSale:  The description parameter is ""
-	public void test6() {
+	public void test6() throws ParamNullException {
 		description= "";
 		testDA.open();
 		testDA.createSeller(sellerMail,sellerName);
@@ -237,7 +231,7 @@ public class CreateSaleBDBlackTest {
 			assertTrue(!exist);
 			testDA.close();
 			
-			} catch (ParamNullException | SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
+			} catch (SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
 		    System.out.println("Error: " + e.getMessage());
@@ -253,7 +247,7 @@ public class CreateSaleBDBlackTest {
 	}
 	@Test
 	//sut.createSale:  The status > 3 
-	public void test7() {
+	public void test7() throws ParamNullException {
 		status= 7;
 		testDA.open();
 		testDA.createSeller(sellerMail,sellerName);
@@ -272,7 +266,7 @@ public class CreateSaleBDBlackTest {
 			assertTrue(!exist);
 			testDA.close();
 			
-			} catch (ParamNullException | SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
+			} catch (SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
 		    System.out.println("Error: " + e.getMessage());
@@ -288,7 +282,7 @@ public class CreateSaleBDBlackTest {
 	}
 	@Test
 	//sut.createSale:  The price > 0 
-	public void test8() {
+	public void test8() throws ParamNullException {
 		price= -20;
 		testDA.open();
 		testDA.createSeller(sellerMail,sellerName);
@@ -308,7 +302,7 @@ public class CreateSaleBDBlackTest {
 			assertTrue(!exist);
 			testDA.close();
 			
-			} catch (ParamNullException | SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
+			} catch (SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
 		    System.out.println("Error: " + e.getMessage());
@@ -324,7 +318,7 @@ public class CreateSaleBDBlackTest {
 	}
 	@Test
 	//sut.createSale:  pubDate must be later that today 
-	public void test9() {
+	public void test9() throws ParamNullException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		pubDate=null;
 		try {
@@ -343,7 +337,7 @@ public class CreateSaleBDBlackTest {
 		    // if the program goes to this point true  
 			assertTrue(true);
 
-		} catch (ParamNullException | SaleAlreadyExistException   e ) { 
+		} catch (SaleAlreadyExistException   e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
 		    System.out.println("Error: " + e.getMessage());
@@ -355,7 +349,7 @@ public class CreateSaleBDBlackTest {
 	}
 	@Test
 	//sut.createSale:  sellerMail must not be null 
-	public void test10() {
+	public void test10() throws ParamNullException {
 		sellerMail=null;
 		try {
 			//invoke System Under Test (sut)  
@@ -363,11 +357,7 @@ public class CreateSaleBDBlackTest {
 			sut.createSale(title, description, status, price, pubDate, sellerMail, null);
 			sut.close();
 			
-			} catch (ParamNullException  e ) { 
-		    // if the program goes to this point true  
-			assertTrue(true);
-
-		} catch (MustBeLaterThanTodayException | SaleAlreadyExistException   e ) { 
+			} catch (MustBeLaterThanTodayException | SaleAlreadyExistException   e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
 		    System.out.println("Error: " + e.getMessage());
@@ -379,7 +369,7 @@ public class CreateSaleBDBlackTest {
 	}
 	@Test
 	//sut.createSale:  The seller must be in the DB 
-	public void test11() {
+	public void test11() throws ParamNullException {
 		sellerMail="sellerFake";
 		try {
 			//invoke System Under Test (sut)  
@@ -395,7 +385,7 @@ public class CreateSaleBDBlackTest {
 			assertTrue(!exist);
 			testDA.close();
 			
-			} catch (ParamNullException | SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
+			} catch (SaleAlreadyExistException  | MustBeLaterThanTodayException e ) { 
 		// if the program goes to this point fail  
 			e.printStackTrace();
 		    System.out.println("Error: " + e.getMessage());
@@ -409,7 +399,7 @@ public class CreateSaleBDBlackTest {
 	@Test
 	//sut.createSale:  The Seller("sellerTest@ehu.eus","Seller Test") HAS one sale with that title and the same "title" sale is created. 
 
-	public void test12() {
+	public void test12() throws ParamNullException {
 		
 		
 		testDA.open();
@@ -427,7 +417,7 @@ public class CreateSaleBDBlackTest {
 				assertTrue(true);
 
 
-			} catch (ParamNullException  | MustBeLaterThanTodayException e ) { 
+			} catch (MustBeLaterThanTodayException e ) { 
 			// if the program goes to this point fail  
 				e.printStackTrace();
 			    System.out.println("Error: " + e.getMessage());
