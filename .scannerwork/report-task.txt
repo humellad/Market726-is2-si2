@@ -1,0 +1,7 @@
+organization=ingenieriasoftware
+projectKey=ingenieriasoftware_market
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.108320
+dashboardUrl=https://sonarcloud.io/dashboard?id=ingenieriasoftware_market
+ceTaskId=AaDYgSOClOAsNdqj-PH6
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AaDYgSOClOAsNdqj-PH6
