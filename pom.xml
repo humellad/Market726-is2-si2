@@ -44,14 +44,14 @@
 		</repository>
 	</repositories>
 
+
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
-
-		<sonar.organization>ingenieriasoftware</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>ingenieriasoftware</sonar.organization>
 		<sonar.projectKey>ingenieriasoftware_market</sonar.projectKey>
-		<sonar.login>636957e74eb0379b3273ff52bf553a022b3fe7ce</sonar.login>
+		<sonar.token>636957e74eb0379b3273ff52bf553a022b3fe7ce</sonar.token>
 	</properties>
 
 	<dependencies>
