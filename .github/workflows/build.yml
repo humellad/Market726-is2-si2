@@ -44,4 +44,5 @@ jobs:
         run: >
           mvn -B -e -X clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
           -Dsonar.projectKey=ingenieriasoftware_market
+          -Dsonar.organization=ingenieriasoftware
           -Dsonar.host.url=https://sonarcloud.io
