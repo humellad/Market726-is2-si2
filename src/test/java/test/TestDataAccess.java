@@ -1,6 +1,7 @@
 package test;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,6 @@ public class TestDataAccess {
     protected EntityManagerFactory emf;
 
     public void open() {
-        // Lee la misma configuración de BD que usa DataAccess
         ConfigXML c = ConfigXML.getInstance();
         String fileName = c.getDbFilename();
         
@@ -57,6 +57,9 @@ public class TestDataAccess {
             db.persist(seller);
         }
         Sale sale = seller.addSale(title, description, status, price, pubDate, extra);
+        if (sale.getSalaketak() == null) {
+            sale.setSalaketak(new ArrayList<>());
+        }
         db.persist(sale);
         db.getTransaction().commit();
         return sale;
@@ -65,6 +68,9 @@ public class TestDataAccess {
     public Sale createSaleWithoutSeller(String title, String description, int status, float price, Date pubDate) {
         db.getTransaction().begin();
         Sale sale = new Sale(title, description, status, price, pubDate, null, null);
+        if (sale.getSalaketak() == null) {
+            sale.setSalaketak(new ArrayList<>());
+        }
         db.persist(sale);
         db.getTransaction().commit();
         return sale;
@@ -78,7 +84,7 @@ public class TestDataAccess {
 
         if (sale != null) {
             if (sale.getSalaketak() == null) {
-                sale.setSalaketak(new java.util.ArrayList<>());
+                sale.setSalaketak(new ArrayList<>());
             }
             sale.getSalaketak().add(queja);
             db.merge(sale);
@@ -130,6 +136,79 @@ public class TestDataAccess {
             return true;
         }
         db.getTransaction().rollback();
+        return false;
+    }
+    
+    public boolean existSale(Integer saleNumber) {
+        return existSaleByNumber(saleNumber);
+    }
+
+    public Sale addSale(Seller owner) {
+        db.getTransaction().begin();
+        Sale sale;
+        if (owner != null) {
+            Seller dbSeller = db.find(Seller.class, owner.getEmail());
+            if (dbSeller == null) {
+                dbSeller = new Seller(owner.getEmail(), owner.getName());
+                db.persist(dbSeller);
+            }
+            sale = dbSeller.addSale("Test Sale", "Test Description", 0, 10.0f, new Date(), null);
+        } else {
+            sale = new Sale("Test Sale", "Test Description", 0, 10.0f, new Date(), null, null);
+        }
+
+        if (sale.getSalaketak() == null) {
+            sale.setSalaketak(new ArrayList<>());
+        }
+
+        db.persist(sale);
+        db.getTransaction().commit();
+        return sale;
+    }
+
+    public Integer addSaleWithQueja(Seller owner, Queja queja) {
+        db.getTransaction().begin();
+        Sale sale;
+        if (owner != null) {
+            Seller dbSeller = db.find(Seller.class, owner.getEmail());
+            if (dbSeller == null) {
+                dbSeller = new Seller(owner.getEmail(), owner.getName());
+                db.persist(dbSeller);
+            }
+            sale = dbSeller.addSale("Test Sale", "Test Description", 0, 10.0f, new Date(), null);
+        } else {
+            sale = new Sale("Test Sale", "Test Description", 0, 10.0f, new Date(), null, null);
+        }
+
+        if (sale.getSalaketak() == null) {
+            sale.setSalaketak(new ArrayList<>());
+        }
+
+        if (queja != null) {
+            db.persist(queja);
+            sale.getSalaketak().add(queja);
+        }
+
+        db.persist(sale);
+        db.getTransaction().commit();
+        return sale.getSaleNumber();
+    }
+
+    public boolean removeQueja(Queja queja) {
+        if (queja == null) return false;
+        db.getTransaction().begin();
+        try {
+            Queja q = db.contains(queja) ? queja : db.merge(queja);
+            if (q != null) {
+                db.remove(q);
+                db.getTransaction().commit();
+                return true;
+            }
+        } catch (Exception e) {
+        }
+        if (db.getTransaction().isActive()) {
+            db.getTransaction().rollback();
+        }
         return false;
     }
 }
