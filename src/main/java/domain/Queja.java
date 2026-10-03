@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Salaketa implements Serializable {
+public class Queja implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,9 +19,9 @@ public class Salaketa implements Serializable {
     private String userEmail;
     private boolean tratatuta = false;
 
-    public Salaketa() {}
+    public Queja() {}
 
-    public Salaketa(String reason, String userEmail) {
+    public Queja(String reason, String userEmail) {
         this.reason = reason;
         this.userEmail = userEmail;
     }

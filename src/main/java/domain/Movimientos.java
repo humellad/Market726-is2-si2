@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-public class Mugimenduak implements Serializable {
+public class Movimientos implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,18 +21,18 @@ public class Mugimenduak implements Serializable {
     private Sale sale;
     
     @ManyToOne
-    private Eskaera eskaera;
+    private Pedido eskaera;
     
     @ManyToOne
-    private Eskaintza eskaintza;
+    private Oferta eskaintza;
 
  
-    public Mugimenduak() {
+    public Movimientos() {
         super();
     }
 
   
-    public Mugimenduak(String mota, Date data, Seller seller) {
+    public Movimientos(String mota, Date data, Seller seller) {
         this.mota = mota;
         this.data = data;
         this.seller = seller;
@@ -54,9 +54,9 @@ public class Mugimenduak implements Serializable {
     public Sale getSale() { return sale; }
     public void setSale(Sale sale) { this.sale = sale; }
 
-    public Eskaera getEskaera() { return eskaera; }
-    public void setEskaera(Eskaera eskaera) { this.eskaera = eskaera; }
+    public Pedido getEskaera() { return eskaera; }
+    public void setEskaera(Pedido eskaera) { this.eskaera = eskaera; }
 
-    public Eskaintza getEskaintza() { return eskaintza; }
-    public void setEskaintza(Eskaintza eskaintza) { this.eskaintza = eskaintza; }
+    public Oferta getEskaintza() { return eskaintza; }
+    public void setEskaintza(Oferta eskaintza) { this.eskaintza = eskaintza; }
 }

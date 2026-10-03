@@ -22,12 +22,12 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Seller;
 import domain.Admin;
-import domain.Bidalketa;
+import domain.Envio;
 import domain.Erreklamazioa;
-import domain.Eskaera;
-import domain.Eskaintza;
-import domain.Mugimenduak;
-import domain.Salaketa;
+import domain.Pedido;
+import domain.Oferta;
+import domain.Movimientos;
+import domain.Queja;
 import domain.Sale;
 import exceptions.FileNotUploadedException;
 import exceptions.MustBeLaterThanTodayException;
@@ -256,13 +256,13 @@ public class DataAccess {
             sale.setBuyer(buyer); 
             buyer.addPurchasedSale(sale); 
             
-            Bidalketa bidalketa = new Bidalketa(sale);
+            Envio bidalketa = new Envio(sale);
             sale.setBidalketa(bidalketa);
             
             db.persist(bidalketa);
 
             // --- NUEVO BLOQUE MUGIMENDUAK ---
-            Mugimenduak mugimendu = new Mugimenduak("EROSKETA", new java.util.Date(), buyer);
+            Movimientos mugimendu = new Movimientos("EROSKETA", new java.util.Date(), buyer);
             mugimendu.setSale(sale);
             db.persist(mugimendu);
             // --------------------------------
@@ -306,7 +306,7 @@ public class DataAccess {
             s.addMoney(zenbat);
 
             // --- NUEVO BLOQUE MUGIMENDUAK (CORREGIDO) ---
-            Mugimenduak mugimendu = new Mugimenduak("DIRU_SARRERA", new java.util.Date(), s);
+            Movimientos mugimendu = new Movimientos("DIRU_SARRERA", new java.util.Date(), s);
             db.persist(mugimendu);
             // --------------------------------------------
 
@@ -377,7 +377,7 @@ public class DataAccess {
         }
     }
     
-    public boolean resolveReport(Integer saleNumber, Salaketa salaketa,boolean aceptar) {
+    public boolean resolveReport(Integer saleNumber, Queja salaketa,boolean aceptar) {
         try {
             db.getTransaction().begin();
             Sale sale = db.find(Sale.class, saleNumber);
@@ -389,7 +389,7 @@ public class DataAccess {
             
             sale.getSalaketak().removeIf(s -> s.getId().equals(salaketa.getId()));
 
-            Salaketa s = db.find(Salaketa.class, salaketa.getId());
+            Queja s = db.find(Queja.class, salaketa.getId());
             if (s != null) {
                 s.setTratatuta(true);
                 db.merge(s);
@@ -462,11 +462,11 @@ public class DataAccess {
                     seller.addMoney(-sale.getPrice()); 
 
                    
-                    Mugimenduak mBuyer = new Mugimenduak("ITZULKETA", new java.util.Date(), buyer);
+                    Movimientos mBuyer = new Movimientos("ITZULKETA", new java.util.Date(), buyer);
                     mBuyer.setSale(sale);
                     db.persist(mBuyer);
                     
-                    Mugimenduak mSeller = new Mugimenduak("ITZULKETA_KENTZEA", new java.util.Date(), seller);
+                    Movimientos mSeller = new Movimientos("ITZULKETA_KENTZEA", new java.util.Date(), seller);
                     mSeller.setSale(sale);
                     db.persist(mSeller);
                     
@@ -630,12 +630,12 @@ public class DataAccess {
                 s.setBuyer(buyer);
                 buyer.addPurchasedSale(s);
                 
-                Bidalketa bidalketa = new Bidalketa(s);
+                Envio bidalketa = new Envio(s);
                 s.setBidalketa(bidalketa);
                 db.persist(bidalketa);
 
                
-                Mugimenduak mugimendu = new Mugimenduak("EROSKETA", new java.util.Date(), buyer);
+                Movimientos mugimendu = new Movimientos("EROSKETA", new java.util.Date(), buyer);
                 mugimendu.setSale(s);
                 db.persist(mugimendu);
                 
@@ -668,7 +668,7 @@ public class DataAccess {
                 return false;
             }
             
-            Eskaera eskaera = new Eskaera(title, description, buyer);
+            Pedido eskaera = new Pedido(title, description, buyer);
             db.persist(eskaera);
             db.getTransaction().commit();
             return true;
@@ -679,8 +679,8 @@ public class DataAccess {
         }
     }
 
-    public List<Eskaera> getOpenEskaerak() {
-        TypedQuery<Eskaera> query = db.createQuery("SELECT e FROM Eskaera e WHERE e.isClosed = false", Eskaera.class);
+    public List<Pedido> getOpenEskaerak() {
+        TypedQuery<Pedido> query = db.createQuery("SELECT e FROM Eskaera e WHERE e.isClosed = false", Pedido.class);
         return query.getResultList();
     }
 
@@ -688,7 +688,7 @@ public class DataAccess {
         try {
             db.getTransaction().begin();
             
-            Eskaera eskaera = db.find(Eskaera.class, eskaeraId);
+            Pedido eskaera = db.find(Pedido.class, eskaeraId);
             Seller seller = db.find(Seller.class, sellerEmail);
             
             if (eskaera == null || seller == null || eskaera.isClosed() || eskaera.getBuyer().getEmail().equals(sellerEmail)) {
@@ -696,7 +696,7 @@ public class DataAccess {
                 return false;
             }
 
-            Eskaintza eskaintza = new Eskaintza(price, message, seller, eskaera);
+            Oferta eskaintza = new Oferta(price, message, seller, eskaera);
             eskaera.addEskaintza(eskaintza);
             
             db.persist(eskaintza);
@@ -715,8 +715,8 @@ public class DataAccess {
         try {
             db.getTransaction().begin();
             
-            Eskaera eskaera = db.find(Eskaera.class, eskaeraId);
-            Eskaintza eskaintza = db.find(Eskaintza.class, eskaintzaId);
+            Pedido eskaera = db.find(Pedido.class, eskaeraId);
+            Oferta eskaintza = db.find(Oferta.class, eskaintzaId);
             
             if (eskaera == null || eskaintza == null || eskaera.isClosed()) {
                 db.getTransaction().rollback();
@@ -743,14 +743,14 @@ public class DataAccess {
             transaccion.setBuyer(buyer);
             buyer.addPurchasedSale(transaccion);
             
-            Bidalketa bidalketa = new Bidalketa(transaccion);
+            Envio bidalketa = new Envio(transaccion);
             transaccion.setBidalketa(bidalketa);
             
             db.persist(bidalketa);
             db.persist(transaccion);
 
          
-            Mugimenduak mugimendu = new Mugimenduak("ESKAINTZA_ORDAINKETA", new java.util.Date(), buyer);
+            Movimientos mugimendu = new Movimientos("ESKAINTZA_ORDAINKETA", new java.util.Date(), buyer);
             mugimendu.setEskaera(eskaera);
             mugimendu.setEskaintza(eskaintza);
             db.persist(mugimendu);
@@ -779,14 +779,14 @@ public class DataAccess {
                 return false;
             }
 
-            Bidalketa b = sale.getBidalketa();
+            Envio b = sale.getBidalketa();
             b.setEgoera("JASOTA");
 
             Seller seller = sale.getSeller();
             seller.addMoney(sale.getPrice());
 
            
-            Mugimenduak mugimendu = new Mugimenduak("KOBRANTZA", new java.util.Date(), seller);
+            Movimientos mugimendu = new Movimientos("KOBRANTZA", new java.util.Date(), seller);
             mugimendu.setSale(sale);
             db.persist(mugimendu);
             

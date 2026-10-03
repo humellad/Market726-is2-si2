@@ -55,10 +55,10 @@ public class ViewEskaerakGUI extends JFrame {
     private void loadEskaerak() {
         try {
             BLFacade facade = MainGUI.getBusinessLogic();
-            List<Eskaera> openRequests = facade.getOpenEskaerak();
+            List<Pedido> openRequests = facade.getOpenEskaerak();
             tableModel.setRowCount(0);
 
-            for (Eskaera e : openRequests) {
+            for (Pedido e : openRequests) {
                 Vector<Object> row = new Vector<>();
                 row.add(e.getId());
                 row.add(e.getBuyer().getEmail());
@@ -79,7 +79,7 @@ public class ViewEskaerakGUI extends JFrame {
             return;
         }
 
-        Eskaera selected = (Eskaera) tableModel.getValueAt(row, 4);
+        Pedido selected = (Pedido) tableModel.getValueAt(row, 4);
 
         if (selected.getBuyer().getEmail().equals(this.userEmail)) {
             JOptionPane.showMessageDialog(this, ResourceBundle.getBundle("Etiquetas").getString("ViewEskaerakGUI.ErrorSelf"));

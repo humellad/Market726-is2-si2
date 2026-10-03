@@ -97,10 +97,10 @@ public class NireEskaerakGUI extends JFrame {
     private void loadMyRequests() {
         try {
             BLFacade facade = MainGUI.getBusinessLogic();
-            List<Eskaera> allOpen = facade.getOpenEskaerak();
+            List<Pedido> allOpen = facade.getOpenEskaerak();
             modelRequests.setRowCount(0);
 
-            for (Eskaera e : allOpen) {
+            for (Pedido e : allOpen) {
                 if (e.getBuyer().getEmail().equals(userEmail)) {
                     Vector<Object> row = new Vector<>();
                     row.add(e.getId());
@@ -120,8 +120,8 @@ public class NireEskaerakGUI extends JFrame {
         modelOffers.setRowCount(0); 
         if (row == -1) return;
 
-        Eskaera selected = (Eskaera) modelRequests.getValueAt(row, 3);
-        for (Eskaintza off : selected.getEskaintzak()) {
+        Pedido selected = (Pedido) modelRequests.getValueAt(row, 3);
+        for (Oferta off : selected.getEskaintzak()) {
             Vector<Object> r = new Vector<>();
             r.add(off.getId());
             r.add(off.getSeller().getEmail());
@@ -141,8 +141,8 @@ public class NireEskaerakGUI extends JFrame {
             return;
         }
 
-        Eskaera req = (Eskaera) modelRequests.getValueAt(reqRow, 3);
-        Eskaintza off = (Eskaintza) modelOffers.getValueAt(offRow, 4);
+        Pedido req = (Pedido) modelRequests.getValueAt(reqRow, 3);
+        Oferta off = (Oferta) modelOffers.getValueAt(offRow, 4);
 
         try {
             BLFacade facade = MainGUI.getBusinessLogic();

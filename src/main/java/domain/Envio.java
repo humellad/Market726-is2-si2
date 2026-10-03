@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Bidalketa implements Serializable {
+public class Envio implements Serializable {
     
     @Id 
     @GeneratedValue
@@ -21,11 +21,11 @@ public class Bidalketa implements Serializable {
     private Sale sale;
 
     
-    public Bidalketa() {
+    public Envio() {
         super();
     }
 
-    public Bidalketa(Sale sale) {
+    public Envio(Sale sale) {
         this.sale = sale;
         this.egoera = "PRESTATZEN"; 
         this.trackingNumber = "Zehaztu gabe"; 

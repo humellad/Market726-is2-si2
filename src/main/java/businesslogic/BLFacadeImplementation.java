@@ -8,8 +8,8 @@ import javax.jws.WebService;
 
 import dataAccess.DataAccess;
 import domain.Admin;
-import domain.Eskaera;
-import domain.Salaketa;
+import domain.Pedido;
+import domain.Queja;
 import domain.Sale;
 import domain.Seller;
 import exceptions.FileNotUploadedException;
@@ -183,7 +183,7 @@ public class BLFacadeImplementation  implements BLFacade {
     }
     
     @WebMethod 
-    public boolean resolveReport(Integer saleNumber, Salaketa sal, boolean aceptar) {
+    public boolean resolveReport(Integer saleNumber, Queja sal, boolean aceptar) {
     	dbManager.open();
         boolean rep = dbManager.resolveReport(saleNumber,sal,aceptar);
         dbManager.close();
@@ -257,9 +257,9 @@ public class BLFacadeImplementation  implements BLFacade {
     }
 
     @WebMethod
-    public List<Eskaera> getOpenEskaerak() {
+    public List<Pedido> getOpenEskaerak() {
         dbManager.open();
-        List<Eskaera> lista = dbManager.getOpenEskaerak();
+        List<Pedido> lista = dbManager.getOpenEskaerak();
         dbManager.close();
         return lista;
     }

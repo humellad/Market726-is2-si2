@@ -3,16 +3,16 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Saskia {
+public class Cesta {
 
     private Seller seller; //Saltzaile bakarra
     private List<Sale> products = new ArrayList<>();
 
-    public Saskia(Seller seller) {
+    public Cesta(Seller seller) {
         this.seller = seller;
     }
 
-    public Saskia() {
+    public Cesta() {
     }
     public void setSeller(Seller seller) {
         this.seller = seller;

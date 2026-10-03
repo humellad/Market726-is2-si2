@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Eskaera implements Serializable {
+public class Pedido implements Serializable {
     @Id 
     @GeneratedValue
     private Integer id;
@@ -18,9 +18,9 @@ public class Eskaera implements Serializable {
     private Seller buyer;
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    private List<Eskaintza> eskaintzak;
+    private List<Oferta> eskaintzak;
 
-    public Eskaera(String title, String description, Seller buyer) {
+    public Pedido(String title, String description, Seller buyer) {
         this.title = title;
         this.description = description;
         this.buyer = buyer;
@@ -38,17 +38,17 @@ public class Eskaera implements Serializable {
     public void setClosed(boolean isClosed) { this.isClosed = isClosed; }
     public Seller getBuyer() { return buyer; }
     public void setBuyer(Seller buyer) { this.buyer = buyer; }
-    public List<Eskaintza> getEskaintzak() { return eskaintzak; }
+    public List<Oferta> getEskaintzak() { return eskaintzak; }
 
-    public void addEskaintza(Eskaintza e) {
+    public void addEskaintza(Oferta e) {
         this.eskaintzak.add(e);
     }
 
-    public Eskaera() {
+    public Pedido() {
     }
 
     
-    public void setEskaintzak(List<Eskaintza> eskaintzak) {
+    public void setEskaintzak(List<Oferta> eskaintzak) {
         this.eskaintzak = eskaintzak;
     }
     

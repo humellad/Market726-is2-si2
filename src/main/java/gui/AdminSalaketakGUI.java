@@ -72,7 +72,7 @@ public class AdminSalaketakGUI extends JFrame {
 		List<Sale> reported = facade.getReportedSales();
 
 		for (Sale sale : reported) {
-			for (Salaketa sal : sale.getSalaketak()) {
+			for (Queja sal : sale.getSalaketak()) {
 				Vector<Object> row = new Vector<>();
 				row.add(sale.getTitle());
 				row.add(sal.getReason());
@@ -94,7 +94,7 @@ public class AdminSalaketakGUI extends JFrame {
 		if (row == -1) return;
 
 		Sale sale = (Sale) tableModelProducts.getValueAt(row, 4);
-		Salaketa sal = (Salaketa) tableModelProducts.getValueAt(row, 5);
+		Queja sal = (Queja) tableModelProducts.getValueAt(row, 5);
 		if (sal.isTratatuta()) {
 		    JOptionPane.showMessageDialog(this,
 		        "Salaketa hau jada tratatuta dago");

@@ -32,15 +32,15 @@ public class Sale implements Serializable {
 	
 	// Mantenemos la carga EAGER para las denuncias
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private ArrayList<Salaketa> salaketak = new ArrayList<>();
+	private ArrayList<Queja> salaketak = new ArrayList<>();
 	
 	@OneToOne(cascade=CascadeType.PERSIST)
     private Erreklamazioa erreklamazioa;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-    private Bidalketa bidalketa;
+    private Envio bidalketa;
 	
-	// --- CAMBIO CLAVE: Eliminado @XmlIDREF y añadido EAGER ---
+	// --- CAMBIO CLAVE: Eliminado @XmlIDREF y aï¿½adido EAGER ---
 	@ManyToOne(fetch=FetchType.EAGER) 
 	private Seller seller;
 	
@@ -80,8 +80,8 @@ public class Sale implements Serializable {
 	public Integer getSaleNumber() { return saleNumber; }
 	public void setSaleNumber(Integer saleNumber) { this.saleNumber = saleNumber; }
 	
-	public Bidalketa getBidalketa() { return bidalketa; }
-    public void setBidalketa(Bidalketa bidalketa) { this.bidalketa = bidalketa; }
+	public Envio getBidalketa() { return bidalketa; }
+    public void setBidalketa(Envio bidalketa) { this.bidalketa = bidalketa; }
 	
 	public String getTitle() { return title; }
 	public void setTitle(String title) { this.title = title; }
@@ -110,13 +110,13 @@ public class Sale implements Serializable {
 	}
 
 	public void addSalaketa(String reason, String userEmail) {
-	    salaketak.add(new Salaketa(reason, userEmail));
+	    salaketak.add(new Queja(reason, userEmail));
 	}
 	
-	public ArrayList<Salaketa> getSalaketak() { return salaketak; }
-	public void setSalaketak(ArrayList<Salaketa> salaketak) { this.salaketak = salaketak; }
+	public ArrayList<Queja> getSalaketak() { return salaketak; }
+	public void setSalaketak(ArrayList<Queja> salaketak) { this.salaketak = salaketak; }
 	
-	public void removeSalaketa(Salaketa s) { salaketak.remove(s); }
+	public void removeSalaketa(Queja s) { salaketak.remove(s); }
 	
 	public Erreklamazioa getErreklamazioa() { return erreklamazioa; }
     public void setErreklamazioa(Erreklamazioa erreklamazioa) { this.erreklamazioa = erreklamazioa; }

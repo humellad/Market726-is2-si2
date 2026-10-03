@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import domain.Admin;
-import domain.Eskaera;
-import domain.Salaketa;
+import domain.Pedido;
+import domain.Queja;
 import domain.Sale;
 import domain.Seller;
 import exceptions.FileNotUploadedException;
@@ -78,7 +78,7 @@ public interface BLFacade  {
 	@WebMethod public List<Sale> getSoldItems(String email);
 	@WebMethod public boolean reportSale(String userEmail, Integer saleNumber, String reason);
 	@WebMethod public List<Sale> getReportedSales();
-	@WebMethod public boolean resolveReport(Integer saleNumber, Salaketa sal,boolean aceptar);
+	@WebMethod public boolean resolveReport(Integer saleNumber, Queja sal,boolean aceptar);
 	@WebMethod public boolean addErreklamazioa(Integer saleNumber, String reason, String buyerEmail);
     @WebMethod public List<Sale> getClaimedSales();
     @WebMethod public boolean resolveErreklamazioa(Integer saleNumber, boolean accept);
@@ -89,7 +89,7 @@ public interface BLFacade  {
     @WebMethod public List<Sale> getBasket(String email);
     @WebMethod public boolean buyBasket(String email);
     @WebMethod public boolean createEskaera(String buyerEmail, String title, String description);
-    @WebMethod public List<Eskaera> getOpenEskaerak();
+    @WebMethod public List<Pedido> getOpenEskaerak();
     @WebMethod public boolean addEskaintza(Integer eskaeraId, String sellerEmail, float price, String message);
     @WebMethod public boolean acceptEskaintza(Integer eskaeraId, Integer eskaintzaId);
     @WebMethod public boolean confirmArrival(Integer saleNumber);

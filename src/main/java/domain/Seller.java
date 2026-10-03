@@ -39,7 +39,7 @@ public class Seller implements Serializable {
 	// --- AQUI ESTABA EL ERROR: Faltaba el @XmlTransient para evitar el bucle ---
 	@XmlTransient
 	@OneToMany(mappedBy="seller", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<Mugimenduak> movements = new ArrayList<>();
+	private List<Movimientos> movements = new ArrayList<>();
 
 	private float money = 0;
 
@@ -170,15 +170,15 @@ public class Seller implements Serializable {
 	    basket.clear();
 	}
 
-    public List<Mugimenduak> getMovements() {
+    public List<Movimientos> getMovements() {
         return movements;
     }
 
-    public void setMovements(List<Mugimenduak> movements) {
+    public void setMovements(List<Movimientos> movements) {
         this.movements = movements;
     }
 
-    public void addMovement(Mugimenduak m) {
+    public void addMovement(Movimientos m) {
         this.movements.add(m);
         m.setSeller(this); 
     }

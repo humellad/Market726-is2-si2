@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 @Entity
-public class Eskaintza implements Serializable {
+public class Oferta implements Serializable {
     @Id 
     @GeneratedValue
     private Integer id;
@@ -15,9 +15,9 @@ public class Eskaintza implements Serializable {
     private Seller seller;
 
     @ManyToOne 
-    private Eskaera eskaera;
+    private Pedido eskaera;
 
-    public Eskaintza(float price, String message, Seller seller, Eskaera eskaera) {
+    public Oferta(float price, String message, Seller seller, Pedido eskaera) {
         this.price = price;
         this.message = message;
         this.seller = seller;
@@ -33,12 +33,12 @@ public class Eskaintza implements Serializable {
     public Seller getSeller() { return seller; }
     public void setSeller(Seller seller) { this.seller = seller; }
     @XmlTransient
-    public Eskaera getEskaera() { 
+    public Pedido getEskaera() { 
         return eskaera; 
     }
-    public void setEskaera(Eskaera eskaera) { this.eskaera = eskaera; }
+    public void setEskaera(Pedido eskaera) { this.eskaera = eskaera; }
 
-    public Eskaintza() {
+    public Oferta() {
     }
     public void setId(Integer id) {
         this.id = id;
