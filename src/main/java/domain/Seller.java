@@ -47,6 +47,11 @@ public class Seller implements Serializable {
 		super();
 	}
 	
+	public Seller(String email, String name) {
+		this.email = email;
+		this.name = name;
+	}
+	
 	public Seller(String email, String name, String pass) {
 		this.email = email;
 		this.name = name;
