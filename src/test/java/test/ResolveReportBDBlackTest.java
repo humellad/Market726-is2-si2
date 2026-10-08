@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import dataAccess.DataAccess;
 import domain.Queja;
 import domain.Sale;
