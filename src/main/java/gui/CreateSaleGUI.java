@@ -288,7 +288,7 @@ public class CreateSaleGUI extends JFrame {
             @SuppressWarnings("resource")
 			FileInputStream fileInputStreamReader = new FileInputStream(file);
             byte[] bytes = new byte[(int)file.length()];
-            fileInputStreamReader.read(bytes);
+            int bRead = fileInputStreamReader.read(bytes);
             encodedfile=new String(Base64.getEncoder().encode(bytes));
 
         } catch (FileNotFoundException e) {
