@@ -87,9 +87,10 @@ public class DataAccess {
         db.getTransaction().begin();
         try {        
             //Create sellers 
-            Seller seller1=new Seller("seller1@gmail.com","Aitor Fernandez","aurrera");
-            Seller seller2=new Seller("seller22@gmail.com","Ane Gaztañaga","aurrera");
-            Seller seller3=new Seller("seller3@gmail.com","Test Seller","aurrera");
+        	final String aurrera = "aurrera"; 
+            Seller seller1=new Seller("seller1@gmail.com","Aitor Fernandez",aurrera);
+            Seller seller2=new Seller("seller22@gmail.com","Ane Gaztañaga",aurrera);
+            Seller seller3=new Seller("seller3@gmail.com","Test Seller",aurrera);
 
             Admin admin = new Admin("admin@gmail.com","Admin","admin123");
             db.persist(admin);

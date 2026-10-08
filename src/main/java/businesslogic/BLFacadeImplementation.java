@@ -36,7 +36,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	DataAccess dbManager;
 
 	public BLFacadeImplementation()  {		
-		System.out.println("Creating BLFacadeImplementation instance");
+		LOGGER.log(Level.INFO, "Creating BLFacadeImplementation instance");
 		dbManager=new DataAccess();		
 	}
 	
