@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -50,13 +51,18 @@ public class DataAccess {
             String fileName=c.getDbFilename();
 
             File fileToDelete= new File(fileName);
-            if(fileToDelete.delete()){
-                File fileToDeleteTemp= new File(fileName+"$");
-                fileToDeleteTemp.delete();
-                System.out.println("File deleted");
-             } else {
-                 System.out.println("Operation failed");
-                }
+            try {
+				if(Files.deleteIfExists(fileToDelete.toPath())){
+				    File fileToDeleteTemp= new File(fileName+"$");
+				    Files.delete(fileToDeleteTemp.toPath());;
+				    System.out.println("File deleted");
+				 } else {
+				     System.out.println("Operation failed");
+				    }
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         open();
         if (c.isDatabaseInitialized()) 
