@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.jws.WebMethod;
@@ -41,6 +43,7 @@ public class DataAccess {
     private EntityManager db;
     private EntityManagerFactory emf;
     private static final int baseSize = 160;
+    private static final Logger LOGGER = Logger.getLogger("DataAccess");
 
     private static final String basePath="src/main/resources/images/";
 
@@ -61,7 +64,7 @@ public class DataAccess {
 				    }
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.SEVERE, "error", e);
 			}
         }
         open();
