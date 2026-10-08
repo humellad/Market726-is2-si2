@@ -116,7 +116,7 @@ public class DataAccess {
             System.out.println("Db initialized");
         }
         catch (Exception e){
-            e.printStackTrace();
+        	LOGGER.log(Level.SEVERE, "error", e);
         }
     }
     
@@ -146,7 +146,7 @@ public class DataAccess {
             System.out.println("hasta aqui");
             return sale;
         } catch (NullPointerException e) {
-            e.printStackTrace();
+        	LOGGER.log(Level.SEVERE, "error", e);
             db.getTransaction().commit();
             return null;
         }
@@ -282,7 +282,7 @@ public class DataAccess {
             db.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+        	LOGGER.log(Level.SEVERE, "error", e);
             db.getTransaction().rollback();
             return false;
         }
@@ -324,7 +324,7 @@ public class DataAccess {
             return true;
 
         } catch (Exception e) {
-            e.printStackTrace();
+        	LOGGER.log(Level.SEVERE, "error", e);
             db.getTransaction().rollback();
             return false;
         }
