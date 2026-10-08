@@ -29,7 +29,7 @@ import java.util.logging.Level;
  */
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation  implements BLFacade {
-	 private static final int baseSize = 160;
+	 private static final int baseSize0 = 160;
 	 private static final Logger LOGGER = Logger.getLogger("BLFacadeImplementation");
 
 		private static final String basePath="src/main/resources/images/";
