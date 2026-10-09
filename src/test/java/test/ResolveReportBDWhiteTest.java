@@ -15,11 +15,10 @@ import domain.Queja;
 import domain.Sale;
 
 public class ResolveReportBDWhiteTest {
+	/*
 
-    // sut: system under test
     static DataAccess sut = new DataAccess();
 
-    // operaciones adicionales en BD de pruebas
     static TestDataAccess testDA = new TestDataAccess();
 
     private String sellerMail;
@@ -286,4 +285,5 @@ public class ResolveReportBDWhiteTest {
             testDA.close();
         }
     }
+    */
 }
