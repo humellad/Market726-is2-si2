@@ -15,7 +15,7 @@ import domain.Queja;
 import domain.Sale;
 
 public class ResolveReportBDWhiteTest {
-	/*
+	
 
     static DataAccess sut = new DataAccess();
 
@@ -285,5 +285,4 @@ public class ResolveReportBDWhiteTest {
             testDA.close();
         }
     }
-    */
 }
