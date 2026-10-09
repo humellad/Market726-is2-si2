@@ -29,10 +29,9 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 1 (1, 3, 6, 7, 10, 12)[cite: 1]
-	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∈ BD[cite: 1]
-	// Parámetros: Salaketa != null, aceptar = true[cite: 1]
-	// Resultado: Elimina salaketak, elimina sale y retorna True[cite: 1]
+	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∈ BD
+	// Parámetros: Salaketa != null, aceptar = true
+	// Resultado: Elimina salaketak, elimina sale y retorna True
 	public void test1() {
 		testDA.open();
 		Integer saleNumber = testDA.addSaleWithQueja(null, queja);
@@ -61,10 +60,9 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 2 (1, 3, 6, 7, 10, 13)[cite: 1]
-	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∈ BD[cite: 1]
-	// Parámetros: Salaketa != null, aceptar = true[cite: 1]
-	// Resultado: Elimina salaketak, elimina venta de owner, elimina sale y retorna True[cite: 1]
+	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∈ BD
+	// Parámetros: Salaketa != null, aceptar = true
+	// Resultado: Elimina salaketak, elimina venta de owner, elimina sale y retorna True
 	public void test2() {
 		testDA.open();
 		Seller owner = testDA.createSeller(sellerMail, sellerName);
@@ -95,10 +93,9 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 3 (1, 3, 6, 7, 11)[cite: 1]
-	// BD sin errores, saleNumber ∈ BD, salaketa ∈ BD[cite: 1]
-	// Parámetros: Salaketa != null, aceptar = false[cite: 1]
-	// Resultado: Elimina salaketak, marca tratatuta=true, actualiza sale en BD y retorna True[cite: 1]
+	// BD sin errores, saleNumber ∈ BD, salaketa ∈ BD
+	// Parámetros: Salaketa != null, aceptar = false
+	// Resultado: Elimina salaketak, marca tratatuta=true, actualiza sale en BD y retorna True
 	public void test3() {
 		testDA.open();
 		Integer saleNumber = testDA.addSaleWithQueja(null, queja);
@@ -127,10 +124,9 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 4 (1, 3, 6, 8, 10, 12)[cite: 1]
-	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD[cite: 1]
-	// Parámetros: Salaketa != null, aceptar = true[cite: 1]
-	// Resultado: Elimina salaketak de sale, elimina sale y retorna True[cite: 1]
+	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD
+	// Parámetros: Salaketa != null, aceptar = true
+	// Resultado: Elimina salaketak de sale, elimina sale y retorna True
 	public void test4() {
 		testDA.open();
 		Sale sale = testDA.addSale(null);
@@ -162,10 +158,9 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 5 (1, 3, 6, 8, 10, 13)[cite: 1]
-	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD[cite: 1]
-	// Parámetros: Salaketa != null, aceptar = true[cite: 1]
-	// Resultado: Elimina salaketak, elimina venta de owner, elimina sale y retorna True[cite: 1]
+	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
+	// Parámetros: Salaketa != null, aceptar = true
+	// Resultado: Elimina salaketak, elimina venta de owner, elimina sale y retorna True
 	public void test5() {
 		testDA.open();
 		Seller owner = testDA.createSeller(sellerMail, sellerName);
@@ -199,10 +194,9 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 6 (1, 3, 6, 8, 11)[cite: 1]
-	// BD sin errores, saleNumber ∈ BD, salaketa ∉ BD[cite: 1]
-	// Parámetros: Salaketa != null, aceptar = false[cite: 1]
-	// Resultado: Elimina salaketak, actualiza sale en BD y retorna True[cite: 1]
+	// BD sin errores, saleNumber ∈ BD, salaketa ∉ BD
+	// Parámetros: Salaketa != null, aceptar = false
+	// Resultado: Elimina salaketak, actualiza sale en BD y retorna True
 	public void test6() {
 		testDA.open();
 		Sale sale = testDA.addSale(null);
@@ -234,9 +228,8 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 7 (2)[cite: 1]
-	// Error de BD[cite: 1]
-	// Resultado: No cambia estado BD y retorna False[cite: 1]
+	// Error de BD
+	// Resultado: No cambia estado BD y retorna False
 	public void test7() {
 		try {
 			boolean res = sut.resolveReport(1, queja, true);
@@ -248,9 +241,8 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 8 (1, 4)[cite: 1]
-	// BD sin errores, saleNumber = null[cite: 1]
-	// Resultado: No cambia estado BD y retorna False[cite: 1]
+	// BD sin errores, saleNumber = null
+	// Resultado: No cambia estado BD y retorna False
 	public void test8() {
 		try {
 			sut.open();
@@ -265,9 +257,8 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 9 (1, 5)[cite: 1]
-	// BD sin errores, saleNumber ∉ BD[cite: 1]
-	// Resultado: No cambia estado BD y retorna False[cite: 1]
+	// BD sin errores, saleNumber ∉ BD
+	// Resultado: No cambia estado BD y retorna False
 	public void test9() {
 		Integer saleNumberInexistente = 99999;
 
@@ -284,9 +275,8 @@ public class ResolveReportBDBlackTest {
 	}
 
 	@Test
-	// sut.resolveReport: Case 10 (1, 3, 9)[cite: 1]
-	// BD sin errores, saleNumber ∈ BD, salaketa = null[cite: 1]
-	// Resultado: No cambia estado BD y retorna False[cite: 1]
+	// BD sin errores, saleNumber ∈ BD, salaketa = null
+	// Resultado: No cambia estado BD y retorna False
 	public void test10() {
 		testDA.open();
 		Sale sale = testDA.addSale(null);

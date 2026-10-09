@@ -64,7 +64,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 1: Clases (1, 3, 6, 7, 10, 12)
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∈ BD
 	// Parámetros: Salaketa != null, aceptar = true
 	// Resultado esperado: BD actualizada, retorna True
@@ -85,7 +84,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 2: Clases (1, 3, 6, 7, 10, 13)
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∈ BD
 	// Parámetros: Salaketa != null, aceptar = true
 	// Resultado esperado: BD actualizada (elimina venta de owner), retorna True
@@ -106,7 +104,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 3: Clases (1, 3, 6, 7, 11)
 	// BD sin errores, saleNumber ∈ BD, salaketa ∈ BD
 	// Parámetros: Salaketa != null, aceptar = false
 	// Resultado esperado: Actualiza sale en BD, marca salaketa tratatuta=true, retorna True
@@ -126,7 +123,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 4: Clases (1, 3, 6, 8, 10, 12)
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD
 	// Parámetros: Salaketa != null, aceptar = true
 	// Resultado esperado: Elimina sale, retorna True
@@ -147,7 +143,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 5: Clases (1, 3, 6, 8, 10, 13)
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
 	// Parámetros: Salaketa != null, aceptar = true
 	// Resultado esperado: Elimina venta de owner y elimina sale, retorna True
@@ -168,7 +163,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 6: Clases (1, 3, 6, 8, 11)
 	// BD sin errores, saleNumber ∈ BD, salaketa ∉ BD
 	// Parámetros: Salaketa != null, aceptar = false
 	// Resultado esperado: Actualiza sale en BD, retorna True
@@ -188,7 +182,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 7: Clases (2)
 	// Error de BD
 	// Resultado esperado: No cambia estado BD, retorna False
 	public void test7() {
@@ -206,7 +199,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 8: Clases (1, 4)
 	// BD sin errores, saleNumber = null
 	// Resultado esperado: No cambia estado BD, retorna False
 	public void test8() {
@@ -224,7 +216,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 9: Clases (1, 5)
 	// BD sin errores, saleNumber ∉ BD
 	// Resultado esperado: No cambia estado BD, retorna False
 	public void test9() {
@@ -242,7 +233,6 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// Caso 10: Clases (1, 3, 9)
 	// BD sin errores, saleNumber ∈ BD, Salaketa = null
 	// Resultado esperado: No cambia estado BD, retorna False
 	public void test10() {
