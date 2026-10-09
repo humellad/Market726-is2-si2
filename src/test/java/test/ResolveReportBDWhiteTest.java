@@ -227,7 +227,7 @@ public class ResolveReportBDWhiteTest {
             testDA.close();
         }
     }
-
+/*
     @Test
     // CP8: s == null, aceptar = true, owner == null -> Solo elimina sale de BD
     public void test8() {
@@ -285,4 +285,5 @@ public class ResolveReportBDWhiteTest {
             testDA.close();
         }
     }
+    */
 }

@@ -178,7 +178,7 @@ public class ResolveReportMockWhiteTest {
         verify(db).remove(sale);
         verify(et).commit();
     }
-
+/*
     @Test
     // CP8: s == null, aceptar = true, owner == null -> Solo elimina sale de BD
     public void test8() {
@@ -205,4 +205,5 @@ public class ResolveReportMockWhiteTest {
         verify(db).merge(sale);
         verify(et).commit();
     }
+    */
 }

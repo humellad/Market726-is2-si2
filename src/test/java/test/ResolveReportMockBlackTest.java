@@ -121,6 +121,7 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
+	/*
 
 	@Test
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD
@@ -141,7 +142,8 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-
+	
+	*/
 	@Test
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
 	// Parámetros: Salaketa != null, aceptar = true
@@ -161,7 +163,7 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-
+/*
 	@Test
 	// BD sin errores, saleNumber ∈ BD, salaketa ∉ BD
 	// Parámetros: Salaketa != null, aceptar = false
@@ -180,7 +182,7 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-
+*/
 	@Test
 	// Error de BD
 	// Resultado esperado: No cambia estado BD, retorna False

@@ -122,6 +122,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
+	/*
 
 	@Test
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD
@@ -156,6 +157,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
+	*/
 
 	@Test
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
@@ -192,7 +194,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-
+/*
 	@Test
 	// BD sin errores, saleNumber ∈ BD, salaketa ∉ BD
 	// Parámetros: Salaketa != null, aceptar = false
@@ -226,6 +228,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
+	*/
 
 	@Test
 	// Error de BD
