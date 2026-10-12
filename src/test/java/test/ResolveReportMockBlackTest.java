@@ -64,30 +64,68 @@ public class ResolveReportMockBlackTest {
 	}
 
 	@Test
-	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∈ BD
-	// Parámetros: Salaketa != null, aceptar = true
-	// Resultado esperado: BD actualizada, retorna True
+	// Caso 7 Caja negra
+	// Error de BD
+	// Resultado esperado: No cambia estado BD, retorna False
 	public void test1() {
-		sale.setSeller(null);
-		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
-		Mockito.when(db.find(Queja.class, salaketa.getId())).thenReturn(salaketa);
+		Mockito.when(db.find(Mockito.any(), Mockito.any())).thenThrow(new PersistenceException("Error BD"));
 
 		try {
 			sut.open();
 			boolean res = sut.resolveReport(saleNumber, salaketa, true);
 			sut.close();
 
-			assertTrue(res);
+			assertFalse(res);
+		} catch (Exception e) {
+			fail();
+		}
+	}
+
+
+
+	@Test
+	// Caso 9 Caja negra
+	// BD sin errores, saleNumber ∉ BD
+	// Resultado esperado: No cambia estado BD, retorna False
+	public void test2() {
+		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(null);
+
+		try {
+			sut.open();
+			boolean res = sut.resolveReport(saleNumber, salaketa, true);
+			sut.close();
+
+			assertFalse(res);
 		} catch (Exception e) {
 			fail();
 		}
 	}
 
 	@Test
+	// Caso 10 Caja negra
+	// BD sin errores, saleNumber ∈ BD, Salaketa = null
+	// Resultado esperado: No cambia estado BD, retorna False
+	public void test3() {
+		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
+		salaketa = null;
+
+		try {
+			sut.open();
+			boolean res = sut.resolveReport(saleNumber, salaketa, true);
+			sut.close();
+
+			assertFalse(res);
+		} catch (Exception e) {
+			fail();
+		}
+	}
+	
+	@Test
+	// Caso 2 Caja negra
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∈ BD
 	// Parámetros: Salaketa != null, aceptar = true
 	// Resultado esperado: BD actualizada (elimina venta de owner), retorna True
-	public void test2() {
+	public void test4() {
 		sale.setSeller(owner);
 		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
 		Mockito.when(db.find(Queja.class, salaketa.getId())).thenReturn(salaketa);
@@ -102,12 +140,34 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-
+	
 	@Test
+	// Caso 1 Caja negra
+	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∈ BD
+	// Parámetros: Salaketa != null, aceptar = true
+	// Resultado esperado: BD actualizada, retorna True
+	public void test5() {
+		sale.setSeller(null);
+		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
+		Mockito.when(db.find(Queja.class, salaketa.getId())).thenReturn(salaketa);
+
+		try {
+			sut.open();
+			boolean res = sut.resolveReport(saleNumber, salaketa, true);
+			sut.close();
+
+			assertTrue(res);
+		} catch (Exception e) {
+			fail();
+		}
+	}
+	
+	@Test
+	// Caso 3 Caja negra
 	// BD sin errores, saleNumber ∈ BD, salaketa ∈ BD
 	// Parámetros: Salaketa != null, aceptar = false
 	// Resultado esperado: Actualiza sale en BD, marca salaketa tratatuta=true, retorna True
-	public void test3() {
+	public void test6() {
 		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
 		Mockito.when(db.find(Queja.class, salaketa.getId())).thenReturn(salaketa);
 
@@ -121,13 +181,34 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-	/*
-
+	
 	@Test
+	// Caso 5 Caja negra
+	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
+	// Parámetros: Salaketa != null, aceptar = true
+	// Resultado esperado: Elimina venta de owner y elimina sale, retorna True
+	public void test7() {
+		sale.setSeller(owner);
+		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
+		Mockito.when(db.find(Queja.class, salaketa.getId())).thenReturn(null);
+
+		try {
+			sut.open();
+			boolean res = sut.resolveReport(saleNumber, salaketa, true);
+			sut.close();
+
+			assertTrue(res);
+		} catch (Exception e) {
+			fail();
+		}
+	}
+	
+	@Test
+	// Caso 4 Caja negra
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD
 	// Parámetros: Salaketa != null, aceptar = true
 	// Resultado esperado: Elimina sale, retorna True
-	public void test4() {
+	public void test8() {
 		sale.setSeller(null);
 		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
 		Mockito.when(db.find(Queja.class, salaketa.getId())).thenReturn(null);
@@ -143,32 +224,12 @@ public class ResolveReportMockBlackTest {
 		}
 	}
 	
-	*/
 	@Test
-	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
-	// Parámetros: Salaketa != null, aceptar = true
-	// Resultado esperado: Elimina venta de owner y elimina sale, retorna True
-	public void test5() {
-		sale.setSeller(owner);
-		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
-		Mockito.when(db.find(Queja.class, salaketa.getId())).thenReturn(null);
-
-		try {
-			sut.open();
-			boolean res = sut.resolveReport(saleNumber, salaketa, true);
-			sut.close();
-
-			assertTrue(res);
-		} catch (Exception e) {
-			fail();
-		}
-	}
-/*
-	@Test
+	// Caso 6 Caja negra
 	// BD sin errores, saleNumber ∈ BD, salaketa ∉ BD
 	// Parámetros: Salaketa != null, aceptar = false
 	// Resultado esperado: Actualiza sale en BD, retorna True
-	public void test6() {
+	public void test9() {
 		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
 		Mockito.when(db.find(Queja.class, salaketa.getId())).thenReturn(null);
 
@@ -182,64 +243,13 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-*/
+	
 	@Test
-	// Error de BD
-	// Resultado esperado: No cambia estado BD, retorna False
-	public void test7() {
-		Mockito.when(db.find(Mockito.any(), Mockito.any())).thenThrow(new PersistenceException("Error BD"));
-
-		try {
-			sut.open();
-			boolean res = sut.resolveReport(saleNumber, salaketa, true);
-			sut.close();
-
-			assertFalse(res);
-		} catch (Exception e) {
-			fail();
-		}
-	}
-
-	@Test
+	// Caso 8 Caja negra
 	// BD sin errores, saleNumber = null
 	// Resultado esperado: No cambia estado BD, retorna False
-	public void test8() {
-		saleNumber = null;
-
-		try {
-			sut.open();
-			boolean res = sut.resolveReport(saleNumber, salaketa, true);
-			sut.close();
-
-			assertFalse(res);
-		} catch (Exception e) {
-			fail();
-		}
-	}
-
-	@Test
-	// BD sin errores, saleNumber ∉ BD
-	// Resultado esperado: No cambia estado BD, retorna False
-	public void test9() {
-		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(null);
-
-		try {
-			sut.open();
-			boolean res = sut.resolveReport(saleNumber, salaketa, true);
-			sut.close();
-
-			assertFalse(res);
-		} catch (Exception e) {
-			fail();
-		}
-	}
-
-	@Test
-	// BD sin errores, saleNumber ∈ BD, Salaketa = null
-	// Resultado esperado: No cambia estado BD, retorna False
 	public void test10() {
-		Mockito.when(db.find(Sale.class, saleNumber)).thenReturn(sale);
-		salaketa = null;
+		saleNumber = null;
 
 		try {
 			sut.open();
