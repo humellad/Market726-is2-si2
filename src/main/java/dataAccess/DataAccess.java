@@ -420,7 +420,6 @@ public class DataAccess {
             return true;
 
         } catch (Exception e) {
-            e.printStackTrace();
             db.getTransaction().rollback();
             return false;
         }

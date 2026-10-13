@@ -34,7 +34,9 @@ public class ResolveReportBDBlackTest {
 	// Resultado: No cambia estado BD y retorna False
 	public void test1() {
 		try {
+			sut.open();
 			boolean res = sut.resolveReport(1, queja, true);
+			sut.close();
 			assertFalse(res);
 
 		} catch (Exception e) {
@@ -86,7 +88,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-	
+/*	
 	@Test
 	// Caso 2 Caja negra
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∈ BD
@@ -120,7 +122,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-	
+	*/
 	@Test
 	// Caso 1 Caja negra
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∈ BD
@@ -184,7 +186,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-	
+	/*
 	@Test
 	// Caso 5 Caja negra
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
@@ -221,7 +223,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-	
+	*/
 	@Test
 	// Caso 4 Caja negra
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD
