@@ -104,7 +104,7 @@ public class ResolveReportBDWhiteTest {
             testDA.close();
         }
     }
-/*
+
     @Test
     // CP4: s != null, aceptar = true, owner != null -> Elimina sale, actualiza owner y queja
     public void test4() {
@@ -137,7 +137,7 @@ public class ResolveReportBDWhiteTest {
             testDA.close();
         }
     }
-*/
+
     @Test
     // CP5: s != null, aceptar = true, owner == null -> Elimina sale y actualiza queja (sin owner)
     public void test5() {
@@ -199,7 +199,7 @@ public class ResolveReportBDWhiteTest {
             testDA.close();
         }
     }
-/*
+
     @Test
     // CP7: s == null, aceptar = true, owner != null -> Elimina sale y actualiza owner (sin merge a queja)
     public void test7() {
@@ -227,7 +227,7 @@ public class ResolveReportBDWhiteTest {
             testDA.close();
         }
     }
-*/
+
     @Test
     // CP8: s == null, aceptar = true, owner == null -> Solo elimina sale de BD
     public void test8() {

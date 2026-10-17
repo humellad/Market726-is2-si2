@@ -113,7 +113,7 @@ public class ResolveReportMockWhiteTest {
         assertFalse(res);
         verify(et).rollback();
     }
-/*
+
     @Test
     // CP4: s != null, aceptar = true, owner != null -> Elimina sale, actualiza owner y queja
     public void test4() {
@@ -131,7 +131,7 @@ public class ResolveReportMockWhiteTest {
         verify(db).remove(sale);
         verify(et).commit();
     }
-*/
+
     @Test
     // CP5: s != null, aceptar = true, owner == null -> Elimina sale y actualiza queja (sin owner)
     public void test5() {
@@ -162,7 +162,7 @@ public class ResolveReportMockWhiteTest {
         verify(db).merge(sale);
         verify(et).commit();
     }
-/*
+
     @Test
     // CP7: s == null, aceptar = true, owner != null -> Elimina sale y actualiza owner (sin merge a queja)
     public void test7() {
@@ -178,7 +178,7 @@ public class ResolveReportMockWhiteTest {
         verify(db).remove(sale);
         verify(et).commit();
     }
-*/
+
     @Test
     // CP8: s == null, aceptar = true, owner == null -> Solo elimina sale de BD
     public void test8() {

@@ -88,7 +88,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-/*	
+
 	@Test
 	// Caso 2 Caja negra
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∈ BD
@@ -122,7 +122,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-	*/
+	
 	@Test
 	// Caso 1 Caja negra
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∈ BD
@@ -186,7 +186,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-	/*
+	
 	@Test
 	// Caso 5 Caja negra
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
@@ -223,7 +223,7 @@ public class ResolveReportBDBlackTest {
 			testDA.close();
 		}
 	}
-	*/
+	
 	@Test
 	// Caso 4 Caja negra
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD

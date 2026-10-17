@@ -119,7 +119,7 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-	/*
+	
 	@Test
 	// Caso 2 Caja negra
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∈ BD
@@ -140,7 +140,7 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-	*/
+	
 	@Test
 	// Caso 1 Caja negra
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∈ BD
@@ -181,7 +181,7 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-	/*
+	
 	@Test
 	// Caso 5 Caja negra
 	// BD sin errores, dueño != null, saleNumber ∈ BD, salaketa ∉ BD
@@ -202,7 +202,7 @@ public class ResolveReportMockBlackTest {
 			fail();
 		}
 	}
-	*/
+	
 	@Test
 	// Caso 4 Caja negra
 	// BD sin errores, dueño = null, saleNumber ∈ BD, salaketa ∉ BD
